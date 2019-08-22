@@ -18,7 +18,6 @@ class SimpleALU(m.Circuit):
      
   @classmethod
   def definition(io):
-    c = io.execute_alu(io.a, io.b, io.config)
-    m.wire(c, io.c)
+    io.c <= io.execute_alu(io.a, io.b, io.config)
 
 m.compile('build/SimpleALU', SimpleALU, output="coreir-verilog")
