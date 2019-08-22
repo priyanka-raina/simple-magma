@@ -242,9 +242,9 @@ endmodule  // Mux2xOut$Bits$16$$
 
 module execute_alu (
   output [15:0] O0,
-  input [15:0] av,
-  input [15:0] bv,
-  input [1:0] configv
+  input [15:0] a,
+  input [15:0] b,
+  input [1:0] config
 );
 
 
@@ -384,9 +384,9 @@ module execute_alu (
 
   assign Mux2xOut$Bits$16$$_inst2__S = coreir_eq_2_inst2__out;
 
-  assign Sub16_inst0__I0[15:0] = av[15:0];
+  assign Sub16_inst0__I0[15:0] = a[15:0];
 
-  assign Sub16_inst0__I1[15:0] = bv[15:0];
+  assign Sub16_inst0__I1[15:0] = b[15:0];
 
   assign coreir_eq_2_inst2__in1[1:0] = const_0_2__out[1:0];
 
@@ -394,19 +394,19 @@ module execute_alu (
 
   assign coreir_eq_2_inst0__in1[1:0] = const_2_2__out[1:0];
 
-  assign coreir_add16_inst0__in0[15:0] = av[15:0];
+  assign coreir_add16_inst0__in0[15:0] = a[15:0];
 
-  assign coreir_add16_inst0__in1[15:0] = bv[15:0];
+  assign coreir_add16_inst0__in1[15:0] = b[15:0];
 
-  assign coreir_eq_2_inst0__in0[1:0] = configv[1:0];
+  assign coreir_eq_2_inst0__in0[1:0] = config[1:0];
 
-  assign coreir_eq_2_inst1__in0[1:0] = configv[1:0];
+  assign coreir_eq_2_inst1__in0[1:0] = config[1:0];
 
-  assign coreir_eq_2_inst2__in0[1:0] = configv[1:0];
+  assign coreir_eq_2_inst2__in0[1:0] = config[1:0];
 
-  assign coreir_mul16_inst0__in0[15:0] = av[15:0];
+  assign coreir_mul16_inst0__in0[15:0] = a[15:0];
 
-  assign coreir_mul16_inst0__in1[15:0] = bv[15:0];
+  assign coreir_mul16_inst0__in1[15:0] = b[15:0];
 
 
 endmodule  // execute_alu
@@ -420,23 +420,23 @@ module SimpleALU (
 
 
   wire [15:0] execute_alu_inst0__O0;
-  wire [15:0] execute_alu_inst0__av;
-  wire [15:0] execute_alu_inst0__bv;
-  wire [1:0] execute_alu_inst0__configv;
+  wire [15:0] execute_alu_inst0__a;
+  wire [15:0] execute_alu_inst0__b;
+  wire [1:0] execute_alu_inst0__config;
   execute_alu execute_alu_inst0(
     .O0(execute_alu_inst0__O0),
-    .av(execute_alu_inst0__av),
-    .bv(execute_alu_inst0__bv),
-    .configv(execute_alu_inst0__configv)
+    .a(execute_alu_inst0__a),
+    .b(execute_alu_inst0__b),
+    .config(execute_alu_inst0__config)
   );
 
   assign c[15:0] = execute_alu_inst0__O0[15:0];
 
-  assign execute_alu_inst0__av[15:0] = a[15:0];
+  assign execute_alu_inst0__a[15:0] = a[15:0];
 
-  assign execute_alu_inst0__bv[15:0] = b[15:0];
+  assign execute_alu_inst0__b[15:0] = b[15:0];
 
-  assign execute_alu_inst0__configv[1:0] = config[1:0];
+  assign execute_alu_inst0__config[1:0] = config[1:0];
 
 
 endmodule  // SimpleALU
